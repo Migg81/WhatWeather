@@ -13,7 +13,8 @@ namespace WhatWeather
         {
             InitializeComponent();
 
-            MainPage = new WhatWeather.MainPage();
+            //MainPage = new WhatWeather.MainPage();
+            MainPage = new NavigationPage(new WhatWeather.MainPage());
         }
 
         protected override void OnStart()

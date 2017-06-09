@@ -3,9 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WhatWeather"
              x:Class="WhatWeather.MainPage">
-
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
-
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" HeightRequest="50" Margin="5" BackgroundColor="Maroon">
+                <Button x:Name="getWeatherBtn" Clicked="getWeatherBtn_Clicked"  Text="Search Weather by city" WidthRequest="185" BorderWidth="1" >
+                    <Button.TextColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="White"/>
+                     </Button.TextColor>
+                        <Button.BorderColor>
+                            <OnPlatform x:TypeArguments="Color" iOS="White"/>
+                        </Button.BorderColor>
+                </Button>
+                <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="5" >
+                    <Label Text="{Binding TodaysTemp}" FontSize="38" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
+                    <Label Text="{Binding Name}" FontSize="Small" HorizontalOptions="Center"  FontAttributes="Bold" />
+                    <Label Text="{Binding Country}" FontSize="Small" HorizontalOptions="Center"  FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Spacing="0" Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5" Margin="6">
+                    <Label FontSize="14" Text="Details" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  TextColor="White"/>
+                    <StackLayout Orientation="Horizontal" >
+                        <StackLayout Orientation="Vertical" HorizontalOptions="Start" Padding="6">
+                            <Label Text="{Binding Wind}" TextColor="#f35e20" />
+                            <Label Text="{Binding WindDirection}"  TextColor="#503026" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand" Padding="6">
+                            <Label Text="{Binding Humidity}" TextColor="#f35e20" />
+                            <Label Text="{Binding Pressure}" VerticalOptions="StartAndExpand" TextColor="#503026" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Spacing="5" BackgroundColor="White" Orientation="Vertical" Padding="4">
+                    <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                    <ListView x:Name="listWeather" IsVisible="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="{Binding WeatherIcon}" WidthRequest="40" HeightRequest="40" />
+                                            <Label Text="{Binding CurrentDate}" HorizontalOptions="FillAndExpand" />
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                                <Label Text="{Binding Wind}" HorizontalOptions="FillAndExpand" />
+                                                <Label Text="{Binding Visibility}" />
+                                            </StackLayout>
+                                            <Label Text="{Binding Displayname}" />
+                                        </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
+    
+   
