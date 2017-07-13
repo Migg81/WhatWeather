@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WhatWeather.WeatherSearch">
+             x:Class="WhatWeather.WeatherSearch"
+             Title="Search">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical">
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5">
-                    <SearchBar  Placeholder="City Name"  Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}"></SearchBar>
+                    <SearchBar  Placeholder="City Name"  x:Name="CitySearch"  Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}"></SearchBar>
                     <ListView IsPullToRefreshEnabled="True" IsVisible="{Binding IsCitylistVisibla}"  ItemsSource="{Binding CtyCollection}"  x:Name="CityListview" ItemTapped="EmployeeListView_ItemTapped">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding DisplayName}"  >
-                                            </Label>
+                                            <Label Text="{Binding DisplayName}"  />
                                             <Label IsVisible="False" Text="{Binding Latitude}"  />
                                             <Label IsVisible="False" Text="{Binding Longitude}"  />
                                         </StackLayout>
@@ -25,19 +25,16 @@
                     </ListView>
                 </StackLayout>
                 <StackLayout Spacing="5" BackgroundColor="White" Orientation="Vertical">
-                    <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                    <Label FontSize="14" TextColor="Black" Text="Weather info" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
                     <ListView x:Name="CityWeatherLV" IsVisible="True" ItemsSource="{Binding CityWeather}">
-                        <ListView.ItemTemplate >
+                        <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
                                         <StackLayout Orientation="Horizontal">
-                                            <Image Source="{Binding WeatherIcon}" WidthRequest="40" HeightRequest="40" />
                                             <Label Text="{Binding CurrentDate}" HorizontalOptions="FillAndExpand" />
-                                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
-                                                <Label Text="{Binding Wind}" HorizontalOptions="FillAndExpand" />
-                                                <Label Text="{Binding Visibility}" />
-                                            </StackLayout>
+                                            <Image Source="{Binding WeatherIcon}" />
+                                            <Label Text="{Binding Wind}" HorizontalOptions="FillAndExpand" />
                                             <Label Text="{Binding Displayname}" />
                                         </StackLayout>
                                     </ViewCell.View>

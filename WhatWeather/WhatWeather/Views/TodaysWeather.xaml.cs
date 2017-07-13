@@ -1,15 +1,16 @@
 ﻿using System;
 using WhatWeather.BackEndService;
+using WhatWeather.Model;
 using WhatWeather.NativeService;
 using Xamarin.Forms;
 
 namespace WhatWeather
 {
-    public partial class MainPage : ContentPage
+    public partial class TodaysWeather : ContentPage
     {
         IMyLocation LocService { get; set; }
         ILocationEventArgs LocationArg { get; set; }
-        public MainPage()
+        public TodaysWeather()
         {
             InitializeComponent();
             LocService = DependencyService.Get<IMyLocation>();
@@ -36,7 +37,8 @@ namespace WhatWeather
 
                 City CityWeatherDetails = await CoreService.GetWeatherByLatLng(Convert.ToDecimal(lat), Convert.ToDecimal(lng));
                 this.BindingContext = CityWeatherDetails;
-                listWeather.ItemsSource = CityWeatherDetails.Weathers;
+                //listWeather.ItemsSource = CityWeatherDetails.Climate;
+                list.ItemsSource = CityWeatherDetails.Climate;
             }
            else
             {
@@ -65,7 +67,28 @@ namespace WhatWeather
             LocService.ObtainMyLocation();
         }
 
-        async void getWeatherBtn_Clicked(object sender, EventArgs e)
+        private async void OnTapGestureRecognizerTapped(object sender, EventArgs e)
+        {
+            var action =await DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, "Weather by City", "Advance Search");
+
+            switch (action)
+            {
+                case "Weather by City":
+                    WeatherByCity();
+                    break;
+                case "Advance Search":
+                    AdvanceSearch();
+                    break;
+
+            }
+        }
+
+        private async void AdvanceSearch()
+        {
+            await Navigation.PushAsync(new WeatherSearchByDateAndCity(), false);
+        }
+
+        private async void WeatherByCity()
         {
             await Navigation.PushAsync(new WeatherSearch(), false);
         }

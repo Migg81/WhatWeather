@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using WhatWeather.BackEndService;
-using Xamarin.Forms;
+using WhatWeather.Model;
 
 namespace WhatWeather.ViewModel
 {
@@ -45,6 +44,7 @@ namespace WhatWeather.ViewModel
                     if (SearchCommand.CanExecute(null))
                     {
                         SearchCommand.Execute(null);
+                        this.IsCitylistVisibla = true;
                     }
                 }
             }
@@ -61,7 +61,6 @@ namespace WhatWeather.ViewModel
             {
                 if (ctyCollection != value)
                 {
-                    IsCitylistVisibla = true;
                     ctyCollection = value;
                     OnPropertyChanged("CtyCollection");
                 }

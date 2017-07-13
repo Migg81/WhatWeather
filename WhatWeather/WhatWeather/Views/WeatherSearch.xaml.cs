@@ -1,4 +1,5 @@
 ﻿using System;
+using WhatWeather.Model;
 using WhatWeather.BackEndService;
 using WhatWeather.ViewModel;
 using Xamarin.Forms;
@@ -14,14 +15,7 @@ namespace WhatWeather
         {
             InitializeComponent();
             MyWeather = new SearchForecast();
-
             this.BindingContext = MyWeather;
-        }
-        private void SearchBar_SearchButtonPressed(object sender, EventArgs e)
-        {
-            var autoCopletSearchText = new SearchForecast();
-
-            this.BindingContext = autoCopletSearchText;
         }
 
         private async void EmployeeListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -30,10 +24,9 @@ namespace WhatWeather
             {
                 var city = (City)e.Item;
                 MyWeather.CityWeather =  await CoreService.GetWeatherByLatLng(city.Latitude, city.Longitude);
-
+                CitySearch.Text = city.DisplayName;
                 MyWeather.IsCitylistVisibla = false;
-
-                CityWeatherLV.ItemsSource = MyWeather.CityWeather.Weathers;
+                CityWeatherLV.ItemsSource = MyWeather.CityWeather.Climate;
             }
         }
     }

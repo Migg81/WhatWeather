@@ -14,7 +14,7 @@ namespace WhatWeather
             InitializeComponent();
 
             //MainPage = new WhatWeather.MainPage();
-            MainPage = new NavigationPage(new WhatWeather.MainPage());
+            MainPage = new NavigationPage(new WhatWeather.WetaherTabbed());
         }
 
         protected override void OnStart()

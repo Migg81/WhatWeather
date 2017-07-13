@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhatWeather.WeatherForcastForSixteen" Title="16 Dayes">
+    <ContentPage.Content>
+        <StackLayout Spacing="5" BackgroundColor="White" Orientation="Vertical" Padding="4">
+            <Label FontSize="14" TextColor="Black" Text="Accent Color" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+            <ListView x:Name="listWeather" IsVisible="True" ItemsSource="{Binding Climate}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding CurrentDate}" HorizontalOptions="FillAndExpand" />
+                                    <Image Source="{Binding WeatherIcon}" WidthRequest="40" HeightRequest="40" />
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding Wind}" HorizontalOptions="FillAndExpand" />
+                                        <Label Text="{Binding Visibility}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  x:Class="WhatWeather.UserControl.LVWeatherForecast" x:Name="listWeather" IsVisible="True" >
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell>
+                <ViewCell.View>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding WeatherIcon}" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" VerticalOptions="Center" />
+                        <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding CurrentDate}" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}" />
+                            <Label Text="{Binding Visibility}" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}" />
+                        </StackLayout>
+                        <Label Text="{Binding Displayname}" Grid.Row="0" Grid.Column="2"  Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}"  HorizontalOptions="CenterAndExpand"  VerticalOptions="Center"/>
+                    </Grid>
+                </ViewCell.View>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>

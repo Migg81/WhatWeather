@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WhatWeather.UserControl"
+             x:Class="WhatWeather.TodaysWeather" Title="Today">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid VerticalOptions="Fill" AutomationId="challengeRoot">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40"  />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0"  Orientation="Vertical" BackgroundColor="{StaticResource BrandColor}">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="Menu.png" HorizontalOptions="EndAndExpand"  />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="5"  >
+                        <Label Text="{Binding TodaysTemp}" TextColor="{StaticResource PrimaryTextColorOnDark}" Font="{StaticResource Display1Font}"    HorizontalOptions="CenterAndExpand" />
+                        <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryTextColorOnDark}" Font="{StaticResource CaptionFont}" HorizontalOptions="Center"  />
+                        <Label Text="{Binding Country}" TextColor="{StaticResource PrimaryTextColorOnDark}" Font="{StaticResource CaptionFont}" HorizontalOptions="Center"  />
+                    </StackLayout>
+                    <StackLayout Spacing="20" Orientation="Vertical" Padding="10" Margin="6">
+                        <Grid RowSpacing="1" ColumnSpacing="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"  />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start">
+                                <Image Source="WindSpeed.png" HorizontalOptions="Start" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="End" Padding="25,0,0,0">
+                                    <Label Text="Speed" HorizontalOptions="Start" TextColor="{StaticResource DisabledTextColorOnDark}" Font="{StaticResource BodyFont}"></Label>
+                                    <Label Text="{Binding Weathers.Wind}" TextColor="{StaticResource DisabledTextColorOnDark}" Font="{StaticResource BodyFont}" HorizontalOptions="Start"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                <Image Source="Windsock.png" HorizontalOptions="StartAndExpand" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand" Padding="25,0,0,0">
+                                    <Label Text="Direction" HorizontalOptions="Start" TextColor="{StaticResource DisabledTextColorOnDark}"></Label>
+                                    <Label Text="{Binding Weathers.WindDirection}" TextColor="{StaticResource DisabledTextColorOnDark}" HorizontalOptions="Start"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start">
+                                <Image Source="Moisture.png" HorizontalOptions="StartAndExpand"/>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand" Padding="25,0,0,0">
+                                    <Label Text="Humidity" HorizontalOptions="Start" TextColor="{StaticResource DisabledTextColorOnDark}" Font="{StaticResource BodyFont}"></Label>
+                                    <Label Text="{Binding Weathers.Humidity}" TextColor="{StaticResource DisabledTextColorOnDark}" HorizontalOptions="Start" Font="{StaticResource BodyFont}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                <Image Source="PressureGauge.png" HorizontalOptions="StartAndExpand" />
+                                <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand" Padding="25,0,0,0">
+                                    <Label Text="Pressure" HorizontalOptions="Start" TextColor="{StaticResource DisabledTextColorOnDark}" Font="{StaticResource BodyFont}"></Label>
+                                    <Label Text="{Binding Weathers.Pressure}" TextColor="{StaticResource DisabledTextColorOnDark}" HorizontalOptions="Start" Font="{StaticResource BodyFont}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+                <ContentView Grid.Row="1"  HorizontalOptions="Fill" BackgroundColor="{StaticResource BrandAccentColorDatk}">
+                    <Label Text="Forecast" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="{StaticResource PrimaryTextColorOnDark}" Font="{StaticResource SubheadFont}" />
+                </ContentView>
+                <StackLayout Grid.Row="2" BackgroundColor="White" Orientation="Vertical"  Padding="0,5,0,0">
+                    <local:LVWeatherForecast x:Name="list" />
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    
+   

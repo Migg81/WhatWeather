@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WhatWeather.BackEndService
+namespace WhatWeather.Model
 {
     public class City
     {
@@ -17,15 +17,11 @@ namespace WhatWeather.BackEndService
 
         public string Name { get; set; }
         public string Country { get; set; }
+        public Weather Weathers { get; set; }
         public string TodaysTemp { get; set; }
-        public List<Weather> Weathers { get; set; }
+        public List<Weather> Climate { get; set; }
         public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
-        public string Wind { get; set; }
-        public string Humidity { get; set; }
-        public string Pressure { get; set; }
-        public string WindDirection { get; set; }
-        
+        public decimal Longitude { get; set; }   
     }
     
 }
