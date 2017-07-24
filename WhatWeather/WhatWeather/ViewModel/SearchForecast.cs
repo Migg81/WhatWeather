@@ -3,15 +3,26 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using WhatWeather.BackEndService;
 using WhatWeather.Model;
+using Xamarin.Forms;
 
 namespace WhatWeather.ViewModel
 {
     public class SearchForecast : INotifyPropertyChanged
-    {
-       
+    {  
         private string searchText;
         private ObservableCollection<City> ctyCollection { get; set; }
         private City weather;
+
+        private bool isCityListItemSelected;
+        public bool IsCityListItemSelected
+        {
+            get { return isCityListItemSelected; }
+            set
+            {
+                isCityListItemSelected = value;
+                OnPropertyChanged("IsCityListItemSelected");
+            }
+        }
         private bool isCitylistVisibla;
         public bool IsCitylistVisibla {
             get { return isCitylistVisibla; }
@@ -72,6 +83,17 @@ namespace WhatWeather.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private bool isRecordAvailable;
+
+        public bool IsRecordAvailable
+        {
+            get { return isRecordAvailable; }
+            set
+            {
+                isRecordAvailable = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region Command and associated methods for SearchCommand
         private Xamarin.Forms.Command _searchCommand;

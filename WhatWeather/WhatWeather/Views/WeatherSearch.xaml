@@ -2,46 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WhatWeather.WeatherSearch"
+              xmlns:local="clr-namespace:WhatWeather.UserControl"
              Title="Search">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical">
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5">
-                    <SearchBar  Placeholder="City Name"  x:Name="CitySearch"  Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}"></SearchBar>
-                    <ListView IsPullToRefreshEnabled="True" IsVisible="{Binding IsCitylistVisibla}"  ItemsSource="{Binding CtyCollection}"  x:Name="CityListview" ItemTapped="EmployeeListView_ItemTapped">
+                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                    <SearchBar  Placeholder="City Name" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="Start" x:Name="CitySearch"
+                                FontFamily="{StaticResource BodyFont}" TextColor="{StaticResource PrimaryTextColor}" Text="{Binding SearchText}"
+                                SearchCommand="{Binding SearchCommand}">
+                    </SearchBar>
+                </StackLayout>
+                <StackLayout Padding="18">
+                    <ListView IsPullToRefreshEnabled="True" IsVisible="{Binding IsCitylistVisibla}"  HorizontalOptions="Start" ItemsSource="{Binding CtyCollection}"  x:Name="CityListview" ItemTapped="CityListview_ItemTapped">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
+                                <ViewCell Tapped="ViewCell_Tapped">
                                     <ViewCell.View>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding DisplayName}"  />
-                                            <Label IsVisible="False" Text="{Binding Latitude}"  />
-                                            <Label IsVisible="False" Text="{Binding Longitude}"  />
-                                        </StackLayout>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding DisplayName}" Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}"/>
+                                            <Label IsVisible="False"  Text="{Binding Latitude}"  Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}"/>
+                                            <Label IsVisible="False"  Text="{Binding Longitude}" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}" />
+                                        </Grid>
                                     </ViewCell.View>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-                <StackLayout Spacing="5" BackgroundColor="White" Orientation="Vertical">
-                    <Label FontSize="14" TextColor="Black" Text="Weather info" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
-                    <ListView x:Name="CityWeatherLV" IsVisible="True" ItemsSource="{Binding CityWeather}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.View>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding CurrentDate}" HorizontalOptions="FillAndExpand" />
-                                            <Image Source="{Binding WeatherIcon}" />
-                                            <Label Text="{Binding Wind}" HorizontalOptions="FillAndExpand" />
-                                            <Label Text="{Binding Displayname}" />
-                                        </StackLayout>
-                                    </ViewCell.View>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                <ContentView HorizontalOptions="Fill" BackgroundColor="{StaticResource BrandColorLight}" HeightRequest="40" IsVisible="{Binding IsRecordAvailable}">
+                    <Label Text="Forecast" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="{StaticResource PrimaryTextColorOnDark}" Font="{StaticResource SubheadFont}" />
+                </ContentView>
+                <StackLayout Spacing="5" BackgroundColor="White" Orientation="Vertical" IsVisible="{Binding IsRecordAvailable}">
+                    <local:LVWeatherForecast x:Name="CityWeatherLV" IsVisible="True" ItemsSource="{Binding CityWeather}"></local:LVWeatherForecast>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

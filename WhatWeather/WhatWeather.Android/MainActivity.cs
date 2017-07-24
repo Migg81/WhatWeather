@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Graphics;
 
 namespace WhatWeather.Droid
 {
@@ -21,6 +22,8 @@ namespace WhatWeather.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+
+            Window.SetStatusBarColor(Color.ParseColor("#56c7d6"));
         }
     }
 }

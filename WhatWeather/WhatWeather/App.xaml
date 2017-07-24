@@ -15,7 +15,7 @@
             <Color
 				x:Key="BrandAccentColorLight">#ffa4a2</Color>
             <Color
-				x:Key="BrandAccentColorDatk">#af4448</Color>
+				x:Key="BrandAccentColorDark">#af4448</Color>
             <!-- Text colors on light backgrounds -->
             <Color
 				x:FactoryMethod="FromRgba"
@@ -251,7 +251,7 @@
 					Value="{StaticResource BrandColor}" />
                 <Setter
 					Property="BarTextColor"
-					Value="White" />
+					Value="{StaticResource PrimaryTextColor}" />
             </Style>
             <!-- Theme End  +++++++++++++++++++++++++++++++++++++++++ -->
             <!-- Xaml Resets -->

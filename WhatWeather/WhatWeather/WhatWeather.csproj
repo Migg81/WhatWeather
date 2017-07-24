@@ -47,6 +47,7 @@
     </Compile>
     <Compile Include="ViewModel\CityClimate5day3hourVM.cs" />
     <Compile Include="ViewModel\CityClimateVM.cs" />
+    <Compile Include="ViewModel\TodayesWeatherVM.cs" />
     <Compile Include="Views\TodaysWeather.xaml.cs">
       <DependentUpon>TodaysWeather.xaml</DependentUpon>
     </Compile>

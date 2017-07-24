@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  x:Class="WhatWeather.UserControl.LVWeatherForecast" x:Name="listWeather" IsVisible="True" >
     <ListView.ItemTemplate>
         <DataTemplate>
-            <ViewCell>
+            <ViewCell Tapped="ViewCell_Tapped">
                 <ViewCell.View>
                     <Grid>
                         <Grid.RowDefinitions>

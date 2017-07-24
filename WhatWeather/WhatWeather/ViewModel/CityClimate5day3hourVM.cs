@@ -10,6 +10,7 @@ namespace WhatWeather.ViewModel
     {
         public CityClimate5day3hourVM()
         {
+            IsRecordAvailable = false;
             //climate.Weather = await CoreService.GetHistoricDataUpto16Dayes(climate.Latitude, climate.Longitude, climate.Cnt);
         }
 
@@ -27,7 +28,17 @@ namespace WhatWeather.ViewModel
         {
             get
             {
-                var cityWeather = CoreService.Get5day3HourForecastData(Latitude, Longitude).Climate;
+                //Get weather data for 7 dayes
+                var cityWeather = CoreService.GetHistoricDataUpto16Dayes(Latitude, Longitude,7).Climate;
+                if (cityWeather != null && cityWeather.Count > 0)
+                {
+                    IsRecordAvailable = true;
+                }
+                else
+                {
+                    IsRecordAvailable = false;
+                }
+
                 return cityWeather;
             }
             set
@@ -36,6 +47,18 @@ namespace WhatWeather.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        private bool isRecordAvailable;
+
+        public bool IsRecordAvailable
+        {
+            get { return isRecordAvailable; }
+            set {
+                isRecordAvailable = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private decimal latitude;
 
