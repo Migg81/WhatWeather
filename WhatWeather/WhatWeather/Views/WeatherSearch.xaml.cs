@@ -1,9 +1,11 @@
-﻿using System;
-using WhatWeather.Model;
+﻿using WhatWeather.Model;
 using WhatWeather.BackEndService;
 using WhatWeather.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.Generic;
+using System.Linq;
+
 
 namespace WhatWeather
 {
@@ -28,6 +30,10 @@ namespace WhatWeather
                 MyWeather.CityWeather = await CoreService.GetWeatherByLatLng(city.Latitude, city.Longitude);
                 CitySearch.Text = city.DisplayName;
                 MyWeather.IsCitylistVisibla = false;
+                MyWeather.IsFavoriteCity = false;
+                //Add to favarite list
+                lblFavariteCityName.Text = MyWeather.CityWeather.DisplayName;
+                Addtofavarite(MyWeather.CityWeather);
 
                 if (MyWeather.CityWeather.Climate != null && MyWeather.CityWeather.Climate.Count > 0)
                 {
@@ -41,18 +47,55 @@ namespace WhatWeather
             }
         }
 
-        private void ViewCell_Tapped(object sender, EventArgs e)
+        private void Addtofavarite(City city)
         {
-            //CityListview.SelectedItem = null;
-            //var selected = (ViewCell)(sender);
-            //if (selected.View.BackgroundColor.Equals(Color.FromHex("#af4448")))
-            //{
-            //    selected.View.BackgroundColor = Color.Transparent;
-            //}
-            //else
-            //{
-            //    selected.View.BackgroundColor = Color.FromHex("#af4448");
-            //}
+            var tempFavariteCity = new FavariteCity()
+            {
+                Name = city.Name,
+                Tempurature = city.TodaysTemp,
+                ImageUrl = city.Climate[0].WeatherIcon,
+                Country = city.Country,
+            };
+            if (Application.Current.Properties.Keys.Contains("TempFavariteCity"))
+            {
+                Application.Current.Properties["TempFavariteCity"] = tempFavariteCity; 
+            }
+            else
+            {
+                Application.Current.Properties.Add("TempFavariteCity", tempFavariteCity);
+            }
+        }
+
+        private void chkFavorite_Toggled(object sender, ToggledEventArgs e)
+        {
+            List<FavariteCity> favariteCityes;
+
+            if (Application.Current.Properties.Keys.Contains("FavariteCityes"))
+            {
+                favariteCityes = (List<FavariteCity>)Application.Current.Properties["FavariteCityes"];
+                ToggeledFavariteCityes(favariteCityes);
+            }
+            else
+            {
+                favariteCityes = new List<FavariteCity>();
+                ToggeledFavariteCityes(favariteCityes);
+            }
+        }
+
+        private void ToggeledFavariteCityes(List<FavariteCity> favariteCityes)
+        {
+            if (!chkFavorite.IsToggled)
+            {
+                var TempFavariteCity = (FavariteCity)Application.Current.Properties["TempFavariteCity"];
+                var cityToberemoved = favariteCityes.FirstOrDefault(c => c.Name.Equals(TempFavariteCity.Name));
+                favariteCityes.Remove(cityToberemoved);
+            }
+            else
+            {
+                var tempFavariteCity = (FavariteCity)Application.Current.Properties["TempFavariteCity"];
+                favariteCityes.Add(tempFavariteCity);
+                Application.Current.Properties["FavariteCityes"] = favariteCityes;
+            }
         }
     }
 }

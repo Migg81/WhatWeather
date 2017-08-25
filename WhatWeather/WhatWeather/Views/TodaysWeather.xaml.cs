@@ -100,7 +100,7 @@ namespace WhatWeather
 
         private async void WeatherByCity(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new WeatherSearch(), false);
+            await Navigation.PushAsync(new WhatWeather.Views.FavariteCityes(), false);
         }
     }
 }

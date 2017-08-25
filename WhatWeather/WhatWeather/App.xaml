@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:mytheme="clr-namespace:Xamarin.Forms.Themes;assembly=Xamarin.Forms.Theme.Light"
              x:Class="WhatWeather.App">
     <Application.Resources>
-        <ResourceDictionary>
-            <Color
+        <ResourceDictionary MergedWith="mytheme:LightThemeResources" >
+        <Color
 				x:Key="BrandColor">#0096a5</Color>
             <Color
 				x:Key="BrandColorLight">#56c7d6</Color>
@@ -110,7 +111,8 @@
 				iOS="HelveticaNeue-Medium"
 				Android="sans-serif-medium"
 				WinPhone="" />
-            <Font
+            
+            <!--<Font
 				x:Key="ButtonFont"
 				FontSize="14"
 				FontFamily="{StaticResource MediumFontFamily}" />
@@ -121,65 +123,77 @@
             <Font
 				x:Key="BodyFont"
 				FontSize="14"
-				FontFamily="{StaticResource RegularFontFamily}" />
-            <Font
+				FontFamily="{StaticResource RegularFontFamily}" />-->
+            <!--<Font
 				x:Key="Body2Font"
 				FontSize="14"
-				FontFamily="{StaticResource MediumFontFamily}" />
-            <Font
+				FontFamily="{StaticResource MediumFontFamily}" />-->
+            <!--<Font
 				x:Key="SubheadFont"
 				FontSize="16"
-				FontFamily="{StaticResource RegularFontFamily}" />
-            <Font
+				FontFamily="{StaticResource RegularFontFamily}" />-->
+            <!--<Font
 				x:Key="TitleFont"
 				FontSize="20"
-				FontFamily="{StaticResource MediumFontFamily}" />
-            <Font
+				FontFamily="{StaticResource MediumFontFamily}" />-->
+            <!--<Font
 				x:Key="HeadlineFont"
 				FontSize="24"
-				FontFamily="{StaticResource RegularFontFamily}" />
-            <Font
+				FontFamily="{StaticResource RegularFontFamily}" />-->
+            <!--<Font
 				x:Key="Display1Font"
 				FontSize="34"
-				FontFamily="{StaticResource RegularFontFamily}" />
-            <Font
+				FontFamily="{StaticResource RegularFontFamily}" />-->
+            <!--<Font
 				x:Key="Display2Font"
 				FontSize="45"
-				FontFamily="{StaticResource RegularFontFamily}" />
-            <Font
+				FontFamily="{StaticResource RegularFontFamily}" />-->
+            <!--<Font
 				x:Key="Display3Font"
 				FontSize="56"
-				FontFamily="{StaticResource RegularFontFamily}" />
-            <Font
+				FontFamily="{StaticResource RegularFontFamily}" />-->
+            <!--<Font
 				x:Key="Display4Font"
 				FontSize="112"
-				FontFamily="{StaticResource LightFontFamily}" />
+				FontFamily="{StaticResource LightFontFamily}" />-->
             <Style
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource BodyFont}" />
+					Property="FontSize"
+					Value="12" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="CaptionLabel"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource CaptionFont}" />
+					Property="FontSize"
+					Value="14" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="BodyLabel"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource BodyFont}" />
+					Property="FontSize"
+					Value="14" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="Body2Label"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource Body2Font}" />
+					Property="FontSize"
+					Value="14" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="TitleLabel"
@@ -188,8 +202,11 @@
 					Property="TextColor"
 					Value="{StaticResource PrimaryTextColor}" />
                 <Setter
-					Property="Font"
-					Value="{StaticResource TitleFont}" />
+					Property="FontSize"
+					Value="20" />
+                <Setter
+					Property="FontFamily"
+					Value="MediumFontFamily" /> 
             </Style>
             <Style
 				x:Key="SubheadLabel"
@@ -198,43 +215,61 @@
 					Property="TextColor"
 					Value="{StaticResource SecondaryTextColor}" />
                 <Setter
-					Property="Font"
-					Value="{StaticResource SubheadFont}" />
+					Property="FontSize"
+					Value="16" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />  
             </Style>
             <Style
 				x:Key="HeadlineLabel"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource HeadlineFont}" />
+					Property="FontSize"
+					Value="24" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="Display1Label"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource Display1Font}" />
+					Property="FontSize"
+					Value="34" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="Display2Label"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource Display2Font}" />
+					Property="FontSize"
+					Value="45" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="Display3Label"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource Display3Font}" />
+					Property="FontSize"
+					Value="56" />
+                <Setter
+					Property="FontFamily"
+					Value="RegularFontFamily" />
             </Style>
             <Style
 				x:Key="Display4Label"
 				TargetType="Label">
                 <Setter
-					Property="Font"
-					Value="{StaticResource Display4Font}" />
+					Property="FontSize"
+					Value="112" />
+                <Setter
+					Property="FontFamily"
+					Value="LightFontFamily" />
             </Style>
             <Style
 				x:Key="basePage"

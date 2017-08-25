@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using WhatWeather.Views;
 using Xamarin.Forms;
 
 namespace WhatWeather
@@ -14,7 +10,8 @@ namespace WhatWeather
             InitializeComponent();
 
             //MainPage = new WhatWeather.MainPage();
-            MainPage = new NavigationPage(new WhatWeather.WetaherTabbed());
+             MainPage = new NavigationPage(new WhatWeather.WetaherTabbed());
+            //MainPage = new NavigationPage(new FavariteCityes());
         }
 
         protected override void OnStart()

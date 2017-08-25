@@ -32,6 +32,19 @@ namespace WhatWeather.ViewModel
                 OnPropertyChanged("IsCitylistVisibla");
             }
         }
+
+        
+        private bool isFavoriteCity;
+        public bool IsFavoriteCity
+        {
+            get { return isFavoriteCity; }
+            set
+            {
+                isFavoriteCity = value;
+                OnPropertyChanged("IsFavoriteCity");
+            }
+        }
+
         public City CityWeather
         {
             get { return weather; }

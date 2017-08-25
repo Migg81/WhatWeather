@@ -9,7 +9,7 @@
             <StackLayout Orientation="Vertical">
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <SearchBar  Placeholder="City Name" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="Start" x:Name="CitySearch"
-                                FontFamily="{StaticResource BodyFont}" TextColor="{StaticResource PrimaryTextColor}" Text="{Binding SearchText}"
+                                 Style="{Binding BodyLabel}"  TextColor="{StaticResource PrimaryTextColor}" Text="{Binding SearchText}"
                                 SearchCommand="{Binding SearchCommand}">
                     </SearchBar>
                 </StackLayout>
@@ -17,7 +17,7 @@
                     <ListView IsPullToRefreshEnabled="True" IsVisible="{Binding IsCitylistVisibla}"  HorizontalOptions="Start" ItemsSource="{Binding CtyCollection}"  x:Name="CityListview" ItemTapped="CityListview_ItemTapped">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell Tapped="ViewCell_Tapped">
+                                <ViewCell>
                                     <ViewCell.View>
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -26,9 +26,9 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Text="{Binding DisplayName}" Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}"/>
-                                            <Label IsVisible="False"  Text="{Binding Latitude}"  Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}"/>
-                                            <Label IsVisible="False"  Text="{Binding Longitude}" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}" />
+                                            <Label Text="{Binding DisplayName}" Grid.Row="0" Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  Style="{Binding BodyLabel}"  TextColor="{StaticResource SecondaryTextColor}"/>
+                                            <Label IsVisible="False"  Text="{Binding Latitude}"   Style="{Binding BodyLabel}"  TextColor="{StaticResource SecondaryTextColor}"/>
+                                            <Label IsVisible="False"  Text="{Binding Longitude}"  Style="{Binding BodyLabel}"  TextColor="{StaticResource SecondaryTextColor}" />
                                         </Grid>
                                     </ViewCell.View>
                                 </ViewCell>
@@ -37,7 +37,9 @@
                     </ListView>
                 </StackLayout>
                 <ContentView HorizontalOptions="Fill" BackgroundColor="{StaticResource BrandColorLight}" HeightRequest="40" IsVisible="{Binding IsRecordAvailable}">
-                    <Label Text="Forecast" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="{StaticResource PrimaryTextColorOnDark}" Font="{StaticResource SubheadFont}" />
+                    <Label x:Name="lblFavariteCityName" IsVisible="False"/>
+                    <Label Text="Forecast" HorizontalOptions="Center" VerticalOptions="Center"  TextColor="{StaticResource PrimaryTextColorOnDark}" Style="{Binding SubheadLabel}" />
+                    <Switch x:Name="chkFavorite" Toggled="chkFavorite_Toggled" IsToggled="{Binding IsFavoriteCity}" />
                 </ContentView>
                 <StackLayout Spacing="5" BackgroundColor="White" Orientation="Vertical" IsVisible="{Binding IsRecordAvailable}">
                     <local:LVWeatherForecast x:Name="CityWeatherLV" IsVisible="True" ItemsSource="{Binding CityWeather}"></local:LVWeatherForecast>

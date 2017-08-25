@@ -80,7 +80,7 @@
                                                 <Label Text="{Binding Wind}" HorizontalOptions="FillAndExpand" />
                                                 <Label Text="{Binding Visibility}" />
                                             </StackLayout>
-                                            <Label Text="{Binding Displayname}" />
+                                            <Label Text="{Binding DisplayTemperature}" />
                                         </StackLayout>
                                     </ViewCell.View>
                                 </ViewCell>

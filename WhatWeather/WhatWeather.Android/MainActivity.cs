@@ -23,6 +23,10 @@ namespace WhatWeather.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
+            //var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
+            var x = typeof(Xamarin.Forms.Themes.LightThemeResources);
+            x = typeof(Xamarin.Forms.Themes.Android.UnderlineEffect);
+
             Window.SetStatusBarColor(Color.ParseColor("#56c7d6"));
         }
     }

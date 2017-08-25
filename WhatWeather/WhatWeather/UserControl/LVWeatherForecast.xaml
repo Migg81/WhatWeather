@@ -16,10 +16,10 @@
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding WeatherIcon}" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" VerticalOptions="Center" />
                         <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand">
-                            <Label Text="{Binding CurrentDate}" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}" />
-                            <Label Text="{Binding Visibility}" Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}" />
+                            <Label Text="{Binding CurrentDate}" Style="{Binding BodyLabel}" TextColor="{StaticResource SecondaryTextColor}" />
+                            <Label Text="{Binding Visibility}"  Style="{Binding BodyLabel}"  TextColor="{StaticResource SecondaryTextColor}" />
                         </StackLayout>
-                        <Label Text="{Binding Displayname}" Grid.Row="0" Grid.Column="2"  Font="{StaticResource BodyFont}" TextColor="{StaticResource SecondaryTextColor}"  HorizontalOptions="CenterAndExpand"  VerticalOptions="Center"/>
+                        <Label Text="{Binding DisplayTemperature}" Grid.Row="0" Grid.Column="2"   Style="{Binding BodyLabel}"  TextColor="{StaticResource SecondaryTextColor}"  HorizontalOptions="CenterAndExpand"  VerticalOptions="Center"/>
                     </Grid>
                 </ViewCell.View>
             </ViewCell>

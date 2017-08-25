@@ -10,13 +10,13 @@ namespace WhatWeather.ViewModel
 {
     public class TodayesWeatherVM: INotifyPropertyChanged
     {
-        private string displayNamear;
+        private string displayName;
 
         public string DisplayName
         {
             get { return Name + "," + Country; }
             set {
-                displayNamear = value;
+                displayName = value;
                 PropertyChanged(this, new PropertyChangedEventArgs("DisplayName"));
             }
         }

@@ -5,7 +5,7 @@
         public string Title { get; set; }
         public string MinTemperature { get; set; }
         public string MaxTemperature { get; set; }
-        public string Displayname
+        public string DisplayTemperature
         {
             get
             {

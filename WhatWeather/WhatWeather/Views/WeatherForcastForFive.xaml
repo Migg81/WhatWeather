@@ -10,7 +10,7 @@
                 <RowDefinition Height="*"  />
             </Grid.RowDefinitions>
             <ContentView BackgroundColor="{StaticResource BrandColorLight}" Padding="10,0,0,0" >
-                <Label Text="7 dayes forecast" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Font="{StaticResource SubheadFont}" TextColor="{StaticResource SecondaryTextColor}" />
+                <Label Text="7 dayes forecast" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Style="{Binding SubheadLabel}" TextColor="{StaticResource SecondaryTextColor}" />
             </ContentView>
             <ContentView Grid.Row="1" >
                 <local:LVWeatherForecast x:Name="list" IsVisible="True" ItemsSource="{Binding Climate}" />
