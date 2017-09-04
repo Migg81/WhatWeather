@@ -3,12 +3,13 @@
 <p:ListDataPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:p="clr-namespace:Xamarin.Forms.Pages;assembly=Xamarin.Forms.Pages"
-             x:Class="WhatWeather.Views.FavariteCityes" StyleClass="Events" Title="Sessions">
+             x:Class="WhatWeather.Views.FavariteCityes" StyleClass="Events" Title="Sessions" x:Name="FavariteCityes">
     <p:ListDataPage.ToolbarItems>
         <ToolbarItem Name="Create" Clicked="AddFavariteCity" ></ToolbarItem>
     </p:ListDataPage.ToolbarItems>
     <p:ListDataPage.DefaultItemTemplate>
         <DataTemplate>
+            
             <ViewCell>
                 <ScrollView>
                     <StackLayout Padding="10" Spacing="10">
@@ -18,13 +19,14 @@
                             </Frame.HasShadow>
                             <StackLayout Padding="0" Spacing="10" >
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"  /> <!--CommandParameter="{Binding GeoLocation}"  Command="{Binding Path=BindingContext.FavariteCityTapped, Source={x:Reference Name=FavariteCityes}}"-->
                                 </StackLayout.GestureRecognizers>
+
                                 <p:ListItemControl
                                     Title="{p:DataSourceBinding Name}" 
                                     Detail="{p:DataSourceBinding Tempurature}"
                                     ImageSource="{p:DataSourceBinding ImageUrl}" 
-                                    DataSource="{Binding Value}" HeightRequest="60"  > 
+                                    DataSource="{Binding Value}" HeightRequest="60" > 
                                 </p:ListItemControl>
                             </StackLayout>
                         </Frame>

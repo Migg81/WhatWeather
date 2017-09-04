@@ -108,7 +108,7 @@ namespace WhatWeather.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public async System.Threading.Tasks.Task GetWeatherDetails()
+        public void GetWeatherDetails()
         {
             //City CityWeatherDetails = await CoreService.GetWeather("94040", "us");
             if (Application.Current.Properties.ContainsKey("lat") && Application.Current.Properties.ContainsKey("lng"))
@@ -116,7 +116,7 @@ namespace WhatWeather.ViewModel
                 var lat = Application.Current.Properties["lat"];
                 var lng = Application.Current.Properties["lng"];
 
-                City CityWeatherDetails = await CoreService.GetWeatherByLatLng(Convert.ToDecimal(lat), Convert.ToDecimal(lng));
+                City CityWeatherDetails =  CoreService.GetWeatherByLatLng(Convert.ToDecimal(lat), Convert.ToDecimal(lng));
 
                 this.DisplayName = CityWeatherDetails.DisplayName;
                 this.Climate= CityWeatherDetails.Climate;

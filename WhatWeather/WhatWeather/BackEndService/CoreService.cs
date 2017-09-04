@@ -58,7 +58,10 @@ namespace WhatWeather.BackEndService
                 throw new ArgumentException("You must obtain an API key from openweathermap.org/appid and save it in the 'key' variable.");
             }
 
-            dynamic results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
+            Task<dynamic> task = Task.Run<dynamic>(async () => await DataService.GetDataFromService(queryString));
+            dynamic results = task.Result;
+
+            //dynamic results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
             List<Weather> weathers = new List<Weather>();
 
             if (results["list"] != null)
@@ -100,7 +103,7 @@ namespace WhatWeather.BackEndService
             }
         }
 
-        public static async Task<City> GetWeatherByLatLng(decimal lat, decimal lon)
+        public static City GetWeatherByLatLng(decimal lat, decimal lon)
         {
             try
             {
@@ -111,7 +114,11 @@ namespace WhatWeather.BackEndService
                     throw new ArgumentException("You must obtain an API key from openweathermap.org/appid and save it in the 'key' variable.");
                 }
 
-                dynamic results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
+                Task<dynamic> task = Task.Run<dynamic>(async () => await DataService.GetDataFromService(queryString));
+                dynamic results = task.Result;
+
+
+                //dynamic results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
                 List<Weather> weathers = new List<Weather>();
 
                 if (results["list"] != null)

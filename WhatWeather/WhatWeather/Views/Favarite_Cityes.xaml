@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhatWeather.Views.Favarite_Cityes" x:Name="FavariteCityes">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Create" Clicked="AddFavariteCity" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="listCitys" SeparatorVisibility="None" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                <Frame>
+                                    <Frame.HasShadow>
+                                        <OnPlatform x:TypeArguments="x:Boolean" iOS="false" Android="true"/>
+                                    </Frame.HasShadow>
+                                    <StackLayout VerticalOptions="StartAndExpand">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding GeoLocation}" Tapped="TapGestureRecognizer_Tapped"    Command="{Binding Path=BindingContext.FavariteCityTapped, Source={x:Reference Name=FavariteCityes}}"/>
+                                        </StackLayout.GestureRecognizers>
+                                        <Image Source="{Binding ImageUrl}"  HorizontalOptions="Center" VerticalOptions="Center" />
+                                        <Label Text="{Binding Tempurature}" />
+                                        <Label Text="{Binding Name}" />
+                                    </StackLayout>
+                                </Frame>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

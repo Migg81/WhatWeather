@@ -16,13 +16,14 @@ namespace WhatWeather
             InitializeComponent();
             LocService = DependencyService.Get<IMyLocation>();
             GetCurentLocation();
-            todayesVM = new TodayesWeatherVM();
-            this.BindingContext = todayesVM;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
-            await GetWeatherDetails();
+            base.OnAppearing();
+            todayesVM = new TodayesWeatherVM();
+            this.BindingContext = todayesVM;
+            GetWeatherDetails();
         }
         protected override void OnDisappearing()
         {
@@ -30,7 +31,7 @@ namespace WhatWeather
             LocService.StopLocationUpdates();
         }
 
-        private async void GetCurentLocation()
+        private void GetCurentLocation()
         {
             LocationArg = new LocationEventArgs();
 
@@ -44,63 +45,29 @@ namespace WhatWeather
                 Application.Current.Properties["lng"] = e.lng;
 
                 await Application.Current.SavePropertiesAsync();
-
-                await GetWeatherDetails();
             };
 
             LocService.ObtainMyLocation();
         }
 
-        private async System.Threading.Tasks.Task GetWeatherDetails()
+        private void GetWeatherDetails()
         {
-            ////City CityWeatherDetails = await CoreService.GetWeather("94040", "us");
-            //if (Application.Current.Properties.ContainsKey("lat") && Application.Current.Properties.ContainsKey("lng"))
-            //{
-            //    var lat = Application.Current.Properties["lat"];
-            //    var lng = Application.Current.Properties["lng"];
+            try
+            {
+                todayesVM.GetWeatherDetails();
+                list.ItemsSource = todayesVM.Climate;
+                list.HeightRequest = 170;
+            }
+            catch (Exception ex)
+            {
 
-            //    City CityWeatherDetails = await CoreService.GetWeatherByLatLng(Convert.ToDecimal(lat), Convert.ToDecimal(lng));
-            //    this.BindingContext = CityWeatherDetails;
-            //    //listWeather.ItemsSource = CityWeatherDetails.Climate;
-            //    list.ItemsSource = CityWeatherDetails.Climate;
-
-            //    await todayesVM.GetWeatherDetails();
-            //}
-            //else
-            //{
-            //    //to do
-            //}
-
-            await todayesVM.GetWeatherDetails();
-
-            list.ItemsSource = todayesVM.Climate;
-            list.HeightRequest = 170;
+                throw ex;
+            }
         }
-
-        //private async void OnTapGestureRecognizerTapped(object sender, EventArgs e)
-        //{
-        //    var action =await DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, "Weather by City", "Advance Search");
-
-        //    switch (action)
-        //    {
-        //        case "Weather by City":
-        //            WeatherByCity();
-        //            break;
-        //        case "Advance Search":
-        //            AdvanceSearch();
-        //            break;
-
-        //    }
-        //}
-
-        //private async void AdvanceSearch()
-        //{
-        //    await Navigation.PushAsync(new WeatherSearchByDateAndCity(), false);
-        //}
 
         private async void WeatherByCity(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new WhatWeather.Views.FavariteCityes(), false);
+            await Navigation.PushAsync(new WhatWeather.Views.Favarite_Cityes(), false);
         }
     }
 }

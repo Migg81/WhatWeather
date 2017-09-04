@@ -22,12 +22,12 @@ namespace WhatWeather
             MyWeather.IsRecordAvailable = false;
         }
 
-        private async void CityListview_ItemTapped(object sender, ItemTappedEventArgs e)
+        private  void CityListview_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item != null)
             {
                 var city = (City)e.Item;
-                MyWeather.CityWeather = await CoreService.GetWeatherByLatLng(city.Latitude, city.Longitude);
+                MyWeather.CityWeather =  CoreService.GetWeatherByLatLng(city.Latitude, city.Longitude);
                 CitySearch.Text = city.DisplayName;
                 MyWeather.IsCitylistVisibla = false;
                 MyWeather.IsFavoriteCity = false;
@@ -49,13 +49,19 @@ namespace WhatWeather
 
         private void Addtofavarite(City city)
         {
-            var tempFavariteCity = new FavariteCity()
+            var tempFavariteCity = new FavariteCityModel()
             {
                 Name = city.Name,
                 Tempurature = city.TodaysTemp,
                 ImageUrl = city.Climate[0].WeatherIcon,
                 Country = city.Country,
+                GeoLocation = new GeoLocation
+                {
+                    Latitude = city.Latitude,
+                    Longitude = city.Longitude
+                }
             };
+
             if (Application.Current.Properties.Keys.Contains("TempFavariteCity"))
             {
                 Application.Current.Properties["TempFavariteCity"] = tempFavariteCity; 
@@ -68,31 +74,31 @@ namespace WhatWeather
 
         private void chkFavorite_Toggled(object sender, ToggledEventArgs e)
         {
-            List<FavariteCity> favariteCityes;
+            List<FavariteCityModel> favariteCityes;
 
             if (Application.Current.Properties.Keys.Contains("FavariteCityes"))
             {
-                favariteCityes = (List<FavariteCity>)Application.Current.Properties["FavariteCityes"];
+                favariteCityes = (List<FavariteCityModel>)Application.Current.Properties["FavariteCityes"];
                 ToggeledFavariteCityes(favariteCityes);
             }
             else
             {
-                favariteCityes = new List<FavariteCity>();
+                favariteCityes = new List<FavariteCityModel>();
                 ToggeledFavariteCityes(favariteCityes);
             }
         }
 
-        private void ToggeledFavariteCityes(List<FavariteCity> favariteCityes)
+        private void ToggeledFavariteCityes(List<FavariteCityModel> favariteCityes)
         {
             if (!chkFavorite.IsToggled)
             {
-                var TempFavariteCity = (FavariteCity)Application.Current.Properties["TempFavariteCity"];
+                var TempFavariteCity = (FavariteCityModel)Application.Current.Properties["TempFavariteCity"];
                 var cityToberemoved = favariteCityes.FirstOrDefault(c => c.Name.Equals(TempFavariteCity.Name));
                 favariteCityes.Remove(cityToberemoved);
             }
             else
             {
-                var tempFavariteCity = (FavariteCity)Application.Current.Properties["TempFavariteCity"];
+                var tempFavariteCity = (FavariteCityModel)Application.Current.Properties["TempFavariteCity"];
                 favariteCityes.Add(tempFavariteCity);
                 Application.Current.Properties["FavariteCityes"] = favariteCityes;
             }
