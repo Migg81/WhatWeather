@@ -10,7 +10,7 @@
                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                     <SearchBar  Placeholder="City Name" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="Start" x:Name="CitySearch"
                                  Style="{Binding BodyLabel}"  TextColor="{StaticResource PrimaryTextColor}" Text="{Binding SearchText}"
-                                SearchCommand="{Binding SearchCommand}">
+                                SearchCommand="{Binding SearchCommand}" >
                     </SearchBar>
                 </StackLayout>
                 <StackLayout Padding="18">

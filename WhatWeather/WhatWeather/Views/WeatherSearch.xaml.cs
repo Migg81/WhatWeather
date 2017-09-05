@@ -5,7 +5,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
 using System.Linq;
-
+using System;
+using System.Collections.ObjectModel;
 
 namespace WhatWeather
 {
@@ -74,21 +75,23 @@ namespace WhatWeather
 
         private void chkFavorite_Toggled(object sender, ToggledEventArgs e)
         {
-            List<FavariteCityModel> favariteCityes;
+            ObservableCollection<FavariteCityModel> favariteCityes;
 
             if (Application.Current.Properties.Keys.Contains("FavariteCityes"))
             {
-                favariteCityes = (List<FavariteCityModel>)Application.Current.Properties["FavariteCityes"];
+                favariteCityes = (ObservableCollection<FavariteCityModel>)Application.Current.Properties["FavariteCityes"];
                 ToggeledFavariteCityes(favariteCityes);
             }
             else
             {
-                favariteCityes = new List<FavariteCityModel>();
+                favariteCityes = new ObservableCollection<FavariteCityModel>();
                 ToggeledFavariteCityes(favariteCityes);
             }
         }
 
-        private void ToggeledFavariteCityes(List<FavariteCityModel> favariteCityes)
+
+
+        private void ToggeledFavariteCityes(ObservableCollection<FavariteCityModel> favariteCityes)
         {
             if (!chkFavorite.IsToggled)
             {

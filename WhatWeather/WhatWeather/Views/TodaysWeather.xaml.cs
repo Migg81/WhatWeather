@@ -60,7 +60,6 @@ namespace WhatWeather
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

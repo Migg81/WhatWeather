@@ -7,7 +7,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="listCitys" SeparatorVisibility="None" HasUnevenRows="true">
+            <ListView x:Name="listCitys" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding FavariteCityes}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -18,7 +18,7 @@
                                     </Frame.HasShadow>
                                     <StackLayout VerticalOptions="StartAndExpand">
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer CommandParameter="{Binding GeoLocation}" Tapped="TapGestureRecognizer_Tapped"    Command="{Binding Path=BindingContext.FavariteCityTapped, Source={x:Reference Name=FavariteCityes}}"/>
+                                            <TapGestureRecognizer CommandParameter="{Binding GeoLocation}" Command="{Binding Path=BindingContext.FavariteCityTapped, Source={x:Reference Name=FavariteCityes}}"/>
                                         </StackLayout.GestureRecognizers>
                                         <Image Source="{Binding ImageUrl}"  HorizontalOptions="Center" VerticalOptions="Center" />
                                         <Label Text="{Binding Tempurature}" />
